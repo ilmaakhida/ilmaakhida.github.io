@@ -1,12 +1,12 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Comic Sans MS', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #f0f8ff;
 }
 
 header {
-    background-color: #333;
+    background-color: #4682b4;
     color: white;
     padding: 10px 0;
     text-align: center;
@@ -19,24 +19,52 @@ nav ul {
 
 nav ul li {
     display: inline;
-    margin: 0 10px;
+    margin: 0 15px;
 }
 
 nav ul li a {
     color: white;
     text-decoration: none;
+    font-weight: bold;
 }
 
 main {
     padding: 20px;
 }
 
-h2 {
-    color: #333;
+.intro, .content {
+    background-color: #ffebcd;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.intro h2, .content h2 {
+    color: #4682b4;
+}
+
+.image-container {
+    text-align: center;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+.example {
+    background-color: #e6e6fa;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.example h3 {
+    color: #4b0082;
 }
 
 footer {
-    background-color: #333;
+    background-color: #4682b4;
     color: white;
     text-align: center;
     padding: 10px 0;
