@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulasi Teorema Pythagoras</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .canvas-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+
+        canvas {
+            border: 2px solid #4682b4;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+
+        .controls {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .controls input {
+            margin: 5px;
+            padding: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Simulasi Teorema Pythagoras</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="pythagoras.html">Teorema Pythagoras</a></li>
+                <li><a href="simulasi.html">Simulasi</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="canvas-container">
+            <canvas id="pythagorasCanvas" width="600" height="600"></canvas>
+        </section>
+        <section class="controls">
+            <label for="sideA">Sisi A: </label>
+            <input type="number" id="sideA" value="3">
+            <label for="sideB">Sisi B: </label>
+            <input type="number" id="sideB" value="4">
+        </section>
+    </main>
+    <!-- <footer>
+        <p>&copy; 2024 Pembelajaran Teorema Pythagoras</p>
+    </footer> -->
+    <script>
+        const canvas = document.getElementById('pythagorasCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const sideAInput = document.getElementById('sideA');
+        const sideBInput = document.getElementById('sideB');
+
+        const drawTriangle = () => {
+            const sideA = parseFloat(sideAInput.value) * 100;
+            const sideB = parseFloat(sideBInput.value) * 100;
+            const sideC = Math.sqrt(Math.pow(sideA, 2) + Math.pow(sideB, 2));
+
+            // Menghitung skala maksimum untuk menjaga segitiga dalam canvas
+            const canvasWidth = canvas.width - 200; // Adjust for margins
+            const canvasHeight = canvas.height - 200; // Adjust for margins
+            const maxScale = Math.min(canvasWidth / sideB, canvasHeight / sideA);
+            const scaledSideA = sideA * maxScale;
+            const scaledSideB = sideB * maxScale;
+
+            // Posisi awal segitiga
+            const startX = 100;
+            const startY = 100;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath();
+            ctx.moveTo(startX, startY);
+            ctx.lineTo(startX, startY + scaledSideA);
+            ctx.lineTo(startX + scaledSideB, startY + scaledSideA);
+            ctx.closePath();
+            ctx.strokeStyle = '#4682b4';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+
+            // Draw side lengths
+            // Draw side lengths
+            ctx.font = '16px Arial';
+            ctx.fillStyle = '#4682b4';
+            ctx.textAlign = 'center'; // Agar teks terpusat secara horizontal
+            ctx.textBaseline = 'middle'; // Agar teks terpusat secara vertikal
+
+            // Label sisi a
+            ctx.fillText(`a = ${sideA / 100}`, 100, 100 + scaledSideA / 2);
+
+            // Label sisi b
+            ctx.fillText(`b = ${sideB / 100}`, 100 + scaledSideB / 2, 100 + scaledSideA);
+
+            // Label sisi c
+            // Untuk sisi miring, kita perlu menghitung titik tengahnya secara terpisah
+            const midX = 100 + scaledSideB / 2;
+            const midY = 100 + scaledSideA / 2;
+            ctx.fillText(`c = ${sideC.toFixed(2) / 100}`, midX, midY);
+        };
+
+        sideAInput.addEventListener('input', drawTriangle);
+        sideBInput.addEventListener('input', drawTriangle);
+
+        drawTriangle();
+    </script>
+</body>
+
+</html>
